@@ -3,150 +3,201 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>9kwr | Scripter: Anti-Cheat, Security & Optimization</title>
-<meta name="description" content="Scripter specializing in core logic, anti-cheat, security and optimization.">
+<meta name="theme-color" content="#0a1226">
+<title>9kwr | Backend Developer & Cybersecurity Engineer</title>
+<meta name="description" content="Backend developer, cybersecurity engineer and game scripter. C#, C++, Luau, Python, Rust.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
 <style>
-:root{--bg:#0f0826;--ink:#f3eeff;--mut:#b9aedd;--cy:#22e3ff;--pk:#ff3d9a;--ly:#ffe14d;--vi:#8a5cff;color-scheme:dark}
+:root{--bg:#0a1226;--ink:#e8eefc;--mut:#90a1c6;--blue:#6aa8ff;--tint:#111b36;--line:#22305a;color-scheme:dark}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 Manrope,system-ui,sans-serif;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:-20%;z-index:-1;background:radial-gradient(40% 40% at 20% 25%,#ff3d9a55,transparent 70%),radial-gradient(40% 40% at 80% 30%,#22e3ff40,transparent 70%),radial-gradient(45% 45% at 55% 85%,#8a5cff66,transparent 70%);animation:drift 22s ease-in-out infinite alternate}
-@keyframes drift{to{transform:translate3d(4%,-3%,0) rotate(8deg) scale(1.1)}}
-@keyframes flow{to{background-position:-300% 0}}
-@keyframes rise{from{opacity:0;transform:translateY(30px)}}
-@keyframes pulse{70%{box-shadow:0 0 0 22px #ff3d9a00}100%{box-shadow:0 0 0 0 #ff3d9a00}}
-@keyframes mq{to{transform:translateX(-50%)}}
-.wrap{max-width:1000px;margin:0 auto;padding:0 1.5rem}
-.hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;color:var(--ink);background:radial-gradient(60% 40% at 80% 0,#1b3a8a66,transparent 70%),linear-gradient(#ffffff09 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,#ffffff09 1px,transparent 1px) 0 0/48px 48px,#0a1226;font:400 1.0625rem/1.65 "Instrument Sans",system-ui,sans-serif;overflow-x:hidden}
+a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}}
+@keyframes sc{to{background-position:calc(var(--p)*-1) 0}}
+@keyframes blink{50%{opacity:0}}
+.wrap{max-width:980px;margin:0 auto;padding:0 1.5rem}
+.nav{position:fixed;inset:0 0 auto 0;z-index:10;background:#0a1226c0;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.navin{display:flex;align-items:center;gap:2rem;height:60px}
+.logo{font:400 1.7rem "Instrument Serif",serif;color:var(--ink);text-decoration:none;margin-right:auto}
+.links{display:flex;gap:1.6rem}
+.links a{color:var(--mut);text-decoration:none;font-size:.95rem;transition:color .2s}
+.links a:hover{color:var(--ink)}
+.navbtn{padding:.45rem 1rem;border:1px solid var(--blue);color:var(--blue);border-radius:8px;text-decoration:none;font-size:.9rem;font-weight:500;transition:background .2s,color .2s}
+.navbtn:hover{background:var(--blue);color:#06101f}
+#bar{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--blue);transform:scaleX(0);transform-origin:0 50%}
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:6rem 0 3rem;overflow:hidden}
 #fx{position:absolute;inset:0;width:100%;height:100%}
 .hero .wrap{position:relative;z-index:1;width:100%}
 .rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
-h1{font:800 clamp(3.6rem,16vw,10rem)/.95 Unbounded,sans-serif;letter-spacing:-.04em;margin:0 0 1.25rem;background:linear-gradient(90deg,var(--cy),var(--pk),var(--ly),var(--cy));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 6s linear infinite,rise .9s both}
-.pitch{font-size:clamp(1.1rem,2.6vw,1.45rem);max-width:33rem;margin:0}
-.stat{display:inline-flex;align-items:baseline;gap:.6rem;margin-top:2rem;padding:.6rem 1.1rem;border:1px solid #ffffff2a;border-radius:99px;background:#ffffff0d;backdrop-filter:blur(6px);font-size:.95rem}
-.stat b{font:700 1.3rem Unbounded,sans-serif;color:var(--cy);min-width:2ch;text-align:right}
-.hint{display:block;margin-top:.75rem;color:var(--mut);font-size:.9rem}
-.mq{width:104%;margin:0 0 4rem -2%;overflow:hidden;white-space:nowrap;transform:rotate(-1.2deg);border-block:1px solid #ffffff2a;background:#ffffff0a}
-.mq div{display:inline-block;padding:1rem 0;font:700 1.2rem Unbounded,sans-serif;animation:mq 30s linear infinite}
-.mq span{margin:0 1.5rem;color:var(--pk)}
-section{padding:3rem 0}
-h2{font:700 clamp(1.8rem,5vw,3rem)/1.1 Unbounded,sans-serif;letter-spacing:-.02em;margin:0 0 2rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1.25rem}
-.sk{position:relative;overflow:hidden;padding:1.6rem;border-radius:18px;background:linear-gradient(160deg,#ffffff16,#ffffff05);border:1px solid #ffffff1f;transition:transform .25s,border-color .25s,box-shadow .25s}
-.sk::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--c)}
-.sk:hover{transform:translateY(-6px) rotate(-.6deg);border-color:var(--c);box-shadow:0 14px 40px -12px var(--c)}
-.sk h3{font:700 1.1rem Unbounded,sans-serif;color:var(--c);margin:.4rem 0 .6rem}
-.sk p{margin:0;color:var(--mut)}
-.job{display:grid;gap:.6rem;padding:2rem 0;border-top:1px solid #ffffff2a;transition:padding .3s}
-.job:hover{padding-left:1.25rem}
-.job h3{font:800 clamp(1.6rem,5vw,2.7rem)/1.1 Unbounded,sans-serif;margin:0;transition:color .3s}
-.job:hover h3{color:var(--c)}
-.role{justify-self:start;padding:.25rem .85rem;border-radius:99px;background:var(--c);color:#0f0826;font-weight:500;font-size:.85rem}
-.job p{margin:0;max-width:40rem;color:var(--mut)}
-.contact p{max-width:34rem;margin:0 0 2rem}
-.btn{display:inline-block;padding:1.1rem 2.2rem;border-radius:99px;font:700 1.05rem Unbounded,sans-serif;color:#0f0826;text-decoration:none;background:linear-gradient(90deg,var(--cy),var(--pk),var(--ly),var(--cy));background-size:300% 100%;animation:flow 5s linear infinite,pulse 2.4s infinite;transition:transform .2s}
-.btn:hover{transform:scale(1.06) rotate(-1deg)}
+h1{font:400 clamp(4.8rem,20vw,11rem)/.9 "Instrument Serif",serif;letter-spacing:-.03em;margin:0 0 1.25rem;background:linear-gradient(180deg,#fff,#9ec4ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{font:400 clamp(1.7rem,4.5vw,2.8rem)/1.15 "Instrument Serif",serif;margin:0 0 1rem;min-height:1.2em}
+.role span::after{content:"";display:inline-block;width:2px;height:.9em;margin-left:4px;background:var(--blue);vertical-align:-.08em;animation:blink 1s steps(1) infinite}
+.role em{font-style:normal;color:var(--blue)}
+.pitch{max-width:34rem;margin:0;color:var(--mut)}
+.stat{display:inline-flex;align-items:baseline;gap:.6rem;margin-top:1.75rem;padding:.55rem 1.1rem;border:1px solid var(--line);border-radius:99px;background:#111b36cc;backdrop-filter:blur(6px);font-size:.95rem;color:var(--mut)}
+.stat b{font:500 1.05rem "JetBrains Mono",monospace;color:var(--blue);min-width:2ch;text-align:right}
+.hint{display:block;margin-top:.7rem;color:var(--mut);font-size:.9rem}
+.tas{margin-top:2.5rem;max-width:34rem;padding:.9rem 1rem;border:1px solid var(--line);border-radius:12px;background:#111b36cc;backdrop-filter:blur(6px);font:500 .75rem "JetBrains Mono",monospace;color:var(--mut)}
+.tashd{display:flex;justify-content:space-between;margin-bottom:.7rem}
+.tashd b{color:var(--blue);font-weight:500}
+.lanes{position:relative;display:grid;gap:7px;overflow:hidden;border-radius:4px}
+.lane{height:9px;border-radius:2px;background-repeat:repeat-x;background-size:var(--p) 100%;animation:sc linear infinite}
+.l1{--p:61px;background-image:linear-gradient(90deg,#6aa8ff 0 22px,transparent 22px);animation-duration:1.4s}
+.l2{--p:35px;background-image:linear-gradient(90deg,#3b6fd4 0 12px,transparent 12px);animation-duration:.9s}
+.l3{--p:97px;background-image:linear-gradient(90deg,#e8eefc80 0 40px,transparent 40px);animation-duration:2.4s}
+.head{position:absolute;top:-2px;bottom:-2px;left:50%;width:2px;background:#fff;box-shadow:0 0 12px var(--blue)}
+section{padding:4rem 0;border-top:1px solid var(--line)}
+h2{font:400 clamp(2.2rem,5vw,3.2rem)/1.1 "Instrument Serif",serif;letter-spacing:-.01em;margin:0 0 2rem}
+.sp{--mx:50%;--my:50%;border:1px solid var(--line);border-radius:14px;background:radial-gradient(260px circle at var(--mx) var(--my),#6aa8ff26,transparent 70%),var(--tint);transition:border-color .3s,transform .3s}
+.sp:hover{border-color:#6aa8ff88;transform:translateY(-4px)}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.25rem}
+.three>div{padding:1.6rem}
+.three h3{font:600 1.1rem "Instrument Sans",sans-serif;margin:0 0 .5rem}
+.three h3::before{content:"";display:block;width:2rem;height:3px;margin-bottom:1rem;background:var(--blue);border-radius:2px;transition:width .35s}
+.three>div:hover h3::before{width:4rem}
+.three p{margin:0;color:var(--mut)}
+.pr{list-style:none;margin:0;padding:0}
+.pr li{padding:.7rem 0 .7rem 1.4rem;border-left:3px solid var(--line);font:400 clamp(1.8rem,4.5vw,3rem)/1.15 "Instrument Serif",serif;transition:border-color .3s,padding .3s,color .3s}
+.pr li:hover{border-color:var(--blue);padding-left:2rem;color:var(--blue)}
+.chips{display:flex;flex-wrap:wrap;gap:.8rem}
+.chip{font:500 1rem "JetBrains Mono",monospace;padding:.65rem 1.2rem;border-radius:10px;background:var(--tint);border:1px solid var(--line);transition:background .2s,color .2s,transform .2s}
+.chip:hover{background:var(--blue);color:#06101f;transform:translateY(-3px)}
+.jobs{display:grid;gap:1rem}
+.job{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.2rem 1.5rem;padding:1.5rem 1.75rem}
+.job h3{font:400 clamp(1.7rem,4vw,2.2rem)/1.15 "Instrument Serif",serif;margin:0;transition:color .3s}
+.job:hover h3{color:var(--blue)}
+.job .tag{color:var(--blue);font-weight:500}
+.job p{flex-basis:100%;margin:.2rem 0 0;color:var(--mut);max-width:40rem}
+.contact h2{max-width:30rem}
+.contact p{max-width:34rem;margin:0 0 2rem;color:var(--mut)}
+.btn{display:inline-block;padding:1rem 1.9rem;border-radius:10px;background:var(--blue);color:#06101f;font-weight:600;text-decoration:none;transition:background .25s,transform .25s,box-shadow .25s}
+.btn:hover{background:#fff;transform:translateY(-3px);box-shadow:0 12px 32px -10px #6aa8ffaa}
 .btn:focus-visible{outline:3px solid #fff;outline-offset:4px}
-footer{padding:3rem 0;color:var(--mut);font-size:.9rem}
-.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+footer{padding:2rem 0 3rem;color:var(--mut);font-size:.9rem;border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer a{color:var(--mut)}footer a:hover{color:var(--ink)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
 .rv.on{opacity:1;transform:none}
+@media (max-width:640px){.links{display:none}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
 
+<nav class="nav">
+  <div class="wrap navin">
+    <a class="logo" href="#hero">9kwr</a>
+    <div class="links"><a href="#about">About</a><a href="#stack">Languages</a><a href="#work">Experience</a><a href="#contact">Contact</a></div>
+    <a class="navbtn" href="https://discord.com/users/963361152950222849">Discord</a>
+  </div>
+  <i id="bar"></i>
+</nav>
+
 <header class="hero" id="hero">
   <canvas id="fx" aria-hidden="true"></canvas>
   <div class="wrap">
-    <h1>9kwr</h1>
-    <p class="pitch rise" style="animation-delay:.25s">Scripter. I build core game logic, then make it fast and hard to cheat.</p>
+    <h1 class="rise">9kwr</h1>
+    <p class="role rise" style="animation-delay:.15s">I'm a <em><span id="role">backend developer and cybersecurity engineer</span></em></p>
+    <p class="pitch rise" style="animation-delay:.3s">I build fast systems and make them hard to break.</p>
     <div class="rise" style="animation-delay:.45s">
       <div class="stat">exploits blocked <b id="n">0</b></div>
       <span class="hint">Move your cursor to defend the page.</span>
     </div>
+    <div class="tas rise" aria-hidden="true" style="animation-delay:.6s">
+      <div class="tashd"><span>input timeline</span><span>frame <b id="fr">000000</b></span></div>
+      <div class="lanes"><div class="lane l1"></div><div class="lane l2"></div><div class="lane l3"></div><i class="head"></i></div>
+    </div>
   </div>
 </header>
 
-<div class="mq" aria-hidden="true"><div id="mq"></div></div>
-
 <main class="wrap">
-  <section>
+  <section id="about">
     <h2 class="rv">What I do</h2>
-    <div class="grid rv">
-      <div class="sk" style="--c:var(--cy)"><h3>Core logic</h3><p>Game systems built to be clean, modular and easy to extend.</p></div>
-      <div class="sk" style="--c:var(--pk)"><h3>Anti-cheat</h3><p>Server-side checks that catch exploiters and shut their tricks down.</p></div>
-      <div class="sk" style="--c:var(--ly)"><h3>Security</h3><p>Never trusting the client. Every request that matters gets validated.</p></div>
-      <div class="sk" style="--c:var(--vi)"><h3>Optimization</h3><p>Less lag, less memory, smoother play on any device.</p></div>
+    <div class="three rv">
+      <div class="sp"><h3>Backend development</h3><p>Services and tools built to be fast, reliable and easy to maintain.</p></div>
+      <div class="sp"><h3>Cybersecurity</h3><p>Finding weaknesses, hardening systems and thinking like an attacker to defend against one.</p></div>
+      <div class="sp"><h3>Game scripting</h3><p>Core logic, anti-cheat, security and optimization for games.</p></div>
     </div>
   </section>
 
   <section>
+    <h2 class="rv">How I think</h2>
+    <ul class="pr rv">
+      <li>Never trust the client.</li>
+      <li>Validate everything that matters.</li>
+      <li>Measure before optimizing.</li>
+    </ul>
+  </section>
+
+  <section id="stack">
+    <h2 class="rv">Languages</h2>
+    <div class="chips rv"><span class="chip">C#</span><span class="chip">C++</span><span class="chip">Rust</span><span class="chip">Python</span><span class="chip">Luau</span></div>
+  </section>
+
+  <section id="work">
     <h2 class="rv">Where I've worked</h2>
-    <div class="rv">
-      <article class="job" style="--c:var(--cy)">
-        <h3>Tasability Inc.</h3>
-        <span class="role">Developer</span>
-        <p>I develop on Tasability, a TAS (tool-assisted speedrun) tool.</p>
-      </article>
-      <article class="job" style="--c:var(--pk)">
-        <h3>The Obby Realm</h3>
-        <span class="role">Lead Administrator</span>
-        <p>I lead the team and handle anti-cheat and fixes to keep the game fair and running well.</p>
-      </article>
-      <article class="job" style="--c:var(--ly)">
-        <h3>Tower Creator</h3>
-        <span class="role">Contributor</span>
-        <p>I helped the project fight hackers and exploiters.</p>
-      </article>
+    <div class="jobs rv">
+      <article class="job sp"><h3>Tasability Inc.</h3><span class="tag">Developer</span><p>I develop on Tasability, a TAS (tool-assisted speedrun) tool.</p></article>
+      <article class="job sp"><h3>The Obby Realm</h3><span class="tag">Lead Administrator</span><p>I lead the team and handle anti-cheat and fixes to keep the game fair and running well.</p></article>
+      <article class="job sp"><h3>Tower Creator</h3><span class="tag">Contributor</span><p>I helped the project fight hackers and exploiters.</p></article>
     </div>
   </section>
 
-  <section class="contact">
-    <h2 class="rv">Need a scripter?</h2>
+  <section class="contact" id="contact">
+    <h2 class="rv">Let's build something hard to break.</h2>
     <div class="rv">
-      <p>Open to scripting work, especially anti-cheat, security and performance fixes. The fastest way to reach me is Discord.</p>
+      <p>Open to backend, security and scripting work. The fastest way to reach me is Discord.</p>
       <a class="btn" href="https://discord.com/users/963361152950222849">Message me on Discord</a>
     </div>
   </section>
 </main>
 
-<footer><div class="wrap">&copy; <span id="y">2026</span> 9kwr</div></footer>
+<footer><div class="wrap"><span>&copy; <span id="y">2026</span> 9kwr</span><a href="#hero">Back to top</a></div></footer>
 
 <script>
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 document.getElementById('y').textContent=new Date().getFullYear();
-document.getElementById('mq').innerHTML=('Core logic<span>✦</span>Anti-cheat<span>✦</span>Security<span>✦</span>Optimization<span>✦</span>').repeat(4);
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.15});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+document.querySelectorAll('.sp').forEach(el=>el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.setProperty('--mx',e.clientX-r.left+'px');el.style.setProperty('--my',e.clientY-r.top+'px')}));
+const bar=document.getElementById('bar');
+addEventListener('scroll',()=>{bar.style.transform='scaleX('+scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)+')'},{passive:true});
 
-const hero=document.getElementById('hero'),c=document.getElementById('fx'),x=c.getContext('2d'),n=document.getElementById('n');
-const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-let W,H,mx=null,my=null,t=0,blocked=0;const E=[],P=[],R=85;
+const rl=document.getElementById('role');
+if(!reduce){const words=['backend developer','cybersecurity engineer','game scripter'];let w=0,i=0,del=false;
+  (function tick(){const f=words[w];rl.textContent=f.slice(0,i);
+    if(!del&&i==f.length){del=true;return setTimeout(tick,1600)}
+    if(del&&i==0){del=false;w=(w+1)%words.length}
+    i+=del?-1:1;setTimeout(tick,del?35:70)})()}
+
+const hero=document.getElementById('hero'),c=document.getElementById('fx'),x=c.getContext('2d'),n=document.getElementById('n'),fr=document.getElementById('fr');
+let W,H,mx=null,my=null,t=0,blocked=0;const E=[],P=[],R=80;
 function size(){const d=Math.min(devicePixelRatio||1,2),r=hero.getBoundingClientRect();W=r.width;H=r.height;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0)}
 addEventListener('resize',size);size();
 hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top});
 hero.addEventListener('pointerleave',()=>{mx=null});
-function spawn(){const s=Math.random()*4|0,a=Math.random();E.push({x:s==1?W+10:s==3?-10:a*W,y:s==0?-10:s==2?H+10:a*H,v:.6+Math.random()*1.1,s:3+Math.random()*3,r:0})}
+function spawn(){const s=Math.random()*4|0,a=Math.random();E.push({x:s==1?W+10:s==3?-10:a*W,y:s==0?-10:s==2?H+10:a*H,v:.6+Math.random(),s:3+Math.random()*2.5,r:0})}
 function frame(){
-  t++;x.clearRect(0,0,W,H);
+  t++;fr.textContent=String(t).padStart(6,'0');x.clearRect(0,0,W,H);
   const cx=mx??W/2+Math.cos(t/90)*W*.32,cy=my??H/2+Math.sin(t/70)*H*.28;
-  if(t%22==0&&E.length<45)spawn();
+  if(t%26==0&&E.length<40)spawn();
   for(let i=E.length-1;i>=0;i--){const e=E[i],dx=cx-e.x,dy=cy-e.y,d=Math.hypot(dx,dy);
-    if(d<R){for(let k=0;k<12;k++){const a=Math.random()*6.28,s=1+Math.random()*3;P.push({x:e.x,y:e.y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:1})}
+    if(d<R){for(let k=0;k<10;k++){const a=Math.random()*6.28,s=1+Math.random()*2.5;P.push({x:e.x,y:e.y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:1})}
       E.splice(i,1);n.textContent=++blocked;continue}
-    e.x+=dx/d*e.v;e.y+=dy/d*e.v;e.r+=.06;
-    x.save();x.translate(e.x,e.y);x.rotate(e.r);x.fillStyle='#ff3d9a';x.fillRect(-e.s,-e.s,e.s*2,e.s*2);x.restore()}
+    e.x+=dx/d*e.v;e.y+=dy/d*e.v;e.r+=.05;
+    x.save();x.translate(e.x,e.y);x.rotate(e.r);x.fillStyle='#c9d8ff';x.fillRect(-e.s,-e.s,e.s*2,e.s*2);x.restore()}
   for(let i=P.length-1;i>=0;i--){const p=P[i];p.x+=p.vx;p.y+=p.vy;p.l-=.035;
     if(p.l<=0){P.splice(i,1);continue}
-    x.globalAlpha=p.l;x.fillStyle=i%2?'#ffe14d':'#22e3ff';x.fillRect(p.x,p.y,3,3)}
+    x.globalAlpha=p.l;x.fillStyle=i%2?'#6aa8ff':'#bcd8ff';x.fillRect(p.x,p.y,3,3)}
   x.globalAlpha=1;
-  const g=x.createRadialGradient(cx,cy,R*.4,cx,cy,R);g.addColorStop(0,'#22e3ff00');g.addColorStop(1,'#22e3ff44');
+  const g=x.createRadialGradient(cx,cy,R*.3,cx,cy,R);g.addColorStop(0,'#6aa8ff00');g.addColorStop(1,'#6aa8ff44');
   x.fillStyle=g;x.beginPath();x.arc(cx,cy,R,0,6.283);x.fill();
-  x.strokeStyle='#22e3ff';x.lineWidth=2;x.setLineDash([14,10]);x.lineDashOffset=-t;x.beginPath();x.arc(cx,cy,R,0,6.283);x.stroke();
+  x.strokeStyle='#6aa8ff';x.lineWidth=1.5;x.setLineDash([12,9]);x.lineDashOffset=-t*.6;x.beginPath();x.arc(cx,cy,R,0,6.283);x.stroke();
   requestAnimationFrame(frame)}
 if(reduce){document.querySelector('.stat').style.display='none';document.querySelector('.hint').style.display='none'}else frame();
 </script>
