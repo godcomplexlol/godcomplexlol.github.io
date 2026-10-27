@@ -2,204 +2,385 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="author" content="9kwr">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0a1226">
-<title>9kwr | Backend Developer & Cybersecurity Engineer</title>
-<meta name="description" content="Backend developer, cybersecurity engineer and game scripter. C#, C++, Luau, Python, Rust.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+<title>Does a few frames of timer variation prove cuts? Checking the lolmelody chart</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-<noscript><style>.rv{opacity:1!important;transform:none!important}</style></noscript>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a1226;--ink:#e8eefc;--mut:#90a1c6;--blue:#6aa8ff;--tint:#111b36;--line:#22305a;color-scheme:dark}
+:root{--bg:#eef1f6;--ink:#14213d;--mute:#4a5878;--rule:#c5cde0;--panel:#f9fafc;--bad:#b3203a;--ok:#116b5f;--hi:#fde9c4}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1424;--ink:#e6ebf7;--mute:#9aa7c7;--rule:#2a3556;--panel:#141c32;--bad:#ff7a8f;--ok:#5fd6c3;--hi:#3a2f14}}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{margin:0;color:var(--ink);background:radial-gradient(60% 40% at 80% 0,#1b3a8a66,transparent 70%),linear-gradient(#ffffff09 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,#ffffff09 1px,transparent 1px) 0 0/48px 48px,#0a1226;font:400 1.0625rem/1.65 "Instrument Sans",system-ui,sans-serif;overflow-x:hidden}
-a:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
-@keyframes rise{from{opacity:0;transform:translateY(22px)}}
-@keyframes sc{to{background-position:calc(var(--p)*-1) 0}}
-@keyframes blink{50%{opacity:0}}
-.wrap{max-width:980px;margin:0 auto;padding:0 1.5rem}
-.nav{position:fixed;inset:0 0 auto 0;z-index:10;background:#0a1226c0;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.navin{display:flex;align-items:center;gap:2rem;height:60px}
-.logo{font:400 1.7rem "Instrument Serif",serif;color:var(--ink);text-decoration:none;margin-right:auto}
-.links{display:flex;gap:1.6rem}
-.links a{color:var(--mut);text-decoration:none;font-size:.95rem;transition:color .2s}
-.links a:hover{color:var(--ink)}
-.navbtn{padding:.45rem 1rem;border:1px solid var(--blue);color:var(--blue);border-radius:8px;text-decoration:none;font-size:.9rem;font-weight:500;transition:background .2s,color .2s}
-.navbtn:hover{background:var(--blue);color:#06101f}
-#bar{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--blue);transform:scaleX(0);transform-origin:0 50%}
-.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:6rem 0 3rem;overflow:hidden}
-#fx{position:absolute;inset:0;width:100%;height:100%}
-.hero .wrap{position:relative;z-index:1;width:100%}
-.rise{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
-h1{font:400 clamp(4.8rem,20vw,11rem)/.9 "Instrument Serif",serif;letter-spacing:-.03em;margin:0 0 1.25rem;background:linear-gradient(180deg,#fff,#9ec4ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.role{font:400 clamp(1.7rem,4.5vw,2.8rem)/1.15 "Instrument Serif",serif;margin:0 0 1rem;min-height:1.2em}
-.role span::after{content:"";display:inline-block;width:2px;height:.9em;margin-left:4px;background:var(--blue);vertical-align:-.08em;animation:blink 1s steps(1) infinite}
-.role em{font-style:normal;color:var(--blue)}
-.pitch{max-width:34rem;margin:0;color:var(--mut)}
-.stat{display:inline-flex;align-items:baseline;gap:.6rem;margin-top:1.75rem;padding:.55rem 1.1rem;border:1px solid var(--line);border-radius:99px;background:#111b36cc;backdrop-filter:blur(6px);font-size:.95rem;color:var(--mut)}
-.stat b{font:500 1.05rem "JetBrains Mono",monospace;color:var(--blue);min-width:2ch;text-align:right}
-.hint{display:block;margin-top:.7rem;color:var(--mut);font-size:.9rem}
-.tas{margin-top:2.5rem;max-width:34rem;padding:.9rem 1rem;border:1px solid var(--line);border-radius:12px;background:#111b36cc;backdrop-filter:blur(6px);font:500 .75rem "JetBrains Mono",monospace;color:var(--mut)}
-.tashd{display:flex;justify-content:space-between;margin-bottom:.7rem}
-.tashd b{color:var(--blue);font-weight:500}
-.lanes{position:relative;display:grid;gap:7px;overflow:hidden;border-radius:4px}
-.lane{height:9px;border-radius:2px;background-repeat:repeat-x;background-size:var(--p) 100%;animation:sc linear infinite}
-.l1{--p:61px;background-image:linear-gradient(90deg,#6aa8ff 0 22px,transparent 22px);animation-duration:1.4s}
-.l2{--p:35px;background-image:linear-gradient(90deg,#3b6fd4 0 12px,transparent 12px);animation-duration:.9s}
-.l3{--p:97px;background-image:linear-gradient(90deg,#e8eefc80 0 40px,transparent 40px);animation-duration:2.4s}
-.head{position:absolute;top:-2px;bottom:-2px;left:50%;width:2px;background:#fff;box-shadow:0 0 12px var(--blue)}
-section{padding:4rem 0;border-top:1px solid var(--line)}
-h2{font:400 clamp(2.2rem,5vw,3.2rem)/1.1 "Instrument Serif",serif;letter-spacing:-.01em;margin:0 0 2rem}
-.sp{--mx:50%;--my:50%;border:1px solid var(--line);border-radius:14px;background:radial-gradient(260px circle at var(--mx) var(--my),#6aa8ff26,transparent 70%),var(--tint);transition:border-color .3s,transform .3s}
-.sp:hover{border-color:#6aa8ff88;transform:translateY(-4px)}
-.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.25rem}
-.three>div{padding:1.6rem}
-.three h3{font:600 1.1rem "Instrument Sans",sans-serif;margin:0 0 .5rem}
-.three h3::before{content:"";display:block;width:2rem;height:3px;margin-bottom:1rem;background:var(--blue);border-radius:2px;transition:width .35s}
-.three>div:hover h3::before{width:4rem}
-.three p{margin:0;color:var(--mut)}
-.pr{list-style:none;margin:0;padding:0}
-.pr li{padding:.7rem 0 .7rem 1.4rem;border-left:3px solid var(--line);font:400 clamp(1.8rem,4.5vw,3rem)/1.15 "Instrument Serif",serif;transition:border-color .3s,padding .3s,color .3s}
-.pr li:hover{border-color:var(--blue);padding-left:2rem;color:var(--blue)}
-.chips{display:flex;flex-wrap:wrap;gap:.8rem}
-.chip{font:500 1rem "JetBrains Mono",monospace;padding:.65rem 1.2rem;border-radius:10px;background:var(--tint);border:1px solid var(--line);transition:background .2s,color .2s,transform .2s}
-.chip:hover{background:var(--blue);color:#06101f;transform:translateY(-3px)}
-.jobs{display:grid;gap:1rem}
-.job{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.2rem 1.5rem;padding:1.5rem 1.75rem}
-.job h3{font:400 clamp(1.7rem,4vw,2.2rem)/1.15 "Instrument Serif",serif;margin:0;transition:color .3s}
-.job:hover h3{color:var(--blue)}
-.job .tag{color:var(--blue);font-weight:500}
-.job p{flex-basis:100%;margin:.2rem 0 0;color:var(--mut);max-width:40rem}
-.contact h2{max-width:30rem}
-.contact p{max-width:34rem;margin:0 0 2rem;color:var(--mut)}
-.btn{display:inline-block;padding:1rem 1.9rem;border-radius:10px;background:var(--blue);color:#06101f;font-weight:600;text-decoration:none;transition:background .25s,transform .25s,box-shadow .25s}
-.btn:hover{background:#fff;transform:translateY(-3px);box-shadow:0 12px 32px -10px #6aa8ffaa}
-.btn:focus-visible{outline:3px solid #fff;outline-offset:4px}
-footer{padding:2rem 0 3rem;color:var(--mut);font-size:.9rem;border-top:1px solid var(--line)}
-footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-footer a{color:var(--mut)}footer a:hover{color:var(--ink)}
-.rv{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
-.rv.on{opacity:1;transform:none}
-@media (max-width:640px){.links{display:none}}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:19px/1.65 Newsreader,Georgia,serif}
+body.lock{overflow:hidden}
+main{max-width:46rem;margin:0 auto;padding:4.5rem 1.25rem 5rem}
+h1{font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin:0 0 1rem;font-weight:600;letter-spacing:-.01em}
+h2{font-size:1.6rem;margin:3.2rem 0 .6rem;font-weight:600;line-height:1.2}
+p{margin:0 0 1rem}
+.lead{font-size:1.3rem;color:var(--mute)}
+code,td,th{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace}
+code{font-size:.85em;background:var(--panel);border:1px solid var(--rule);padding:.05em .35em;border-radius:3px}
+.tw{overflow-x:auto;border:1px solid var(--rule);border-radius:6px;background:var(--panel);margin:1rem 0 1.5rem}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.78rem;line-height:1.4}
+th,td{padding:.6rem .7rem;text-align:left;border-bottom:1px solid var(--rule);white-space:nowrap}
+th{font-weight:600;color:var(--mute)}
+tr:last-child td{border-bottom:0}
+tr.sep td{border-top:2px solid var(--rule)}
+tr.bad td{background:var(--hi)}
+.bad-t{color:var(--bad);font-weight:600}.ok-t{color:var(--ok)}
+.sign{font-variant-numeric:tabular-nums}
+.callout{border-left:4px solid var(--ink);padding:.2rem 0 .2rem 1rem;margin:1.5rem 0;color:var(--ink)}
+ul{padding-left:1.2rem}li{margin-bottom:.5rem}
+.by{color:var(--mute);font-size:1rem;margin:0 0 1.5rem}
+footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);color:var(--mute);font-size:.9rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+#ov{position:fixed;inset:0;z-index:99;background:radial-gradient(ellipse at center,#0c1428 0%,#05070e 75%);transition:opacity .9s ease}
+#ov.done{opacity:0;pointer-events:none}
+#eye{display:block;width:100%;height:100%}
+.verdict{border:1px solid var(--rule);background:var(--panel);border-radius:6px;padding:1.1rem 1.4rem .6rem;margin:1.8rem 0}
+.verdict h2{margin:0 0 .6rem;font-size:1.2rem}
+.verdict ul{margin:0}
+.eq{font-family:'JetBrains Mono',monospace;font-size:.85rem;background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:1rem 1.2rem;margin:1rem 0;line-height:2;overflow-x:auto;white-space:nowrap}
+figure{margin:1.5rem 0}
+figcaption{font-size:.9rem;color:var(--mute);margin-top:.4rem}
+svg{width:100%;height:auto;display:block;color:var(--mute)}
+svg text{font-family:'JetBrains Mono',monospace;font-size:11px;fill:var(--mute)}
+.calc{display:grid;gap:.8rem;grid-template-columns:1fr 1fr;margin:1rem 0}
+.calc label{display:block;font-size:.9rem;color:var(--mute)}
+.calc input{width:100%;font:1rem 'JetBrains Mono',monospace;padding:.55rem .65rem;border:1px solid var(--rule);border-radius:4px;background:var(--panel);color:var(--ink)}
+#out{font-family:'JetBrains Mono',monospace;font-size:.85rem;background:var(--panel);border:1px solid var(--rule);border-radius:6px;padding:.9rem 1rem;white-space:pre-wrap;min-height:4.5rem}
+.src{padding-left:0;list-style:none}.src li{margin-bottom:1rem}.src small{display:block;color:var(--mute);font-size:.9rem;line-height:1.5}
+@media(max-width:520px){.calc{grid-template-columns:1fr}}
+#rain{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(440px circle at var(--mx,50%) var(--my,25%),rgba(245,185,74,.11),transparent 70%)}
+main{position:relative;z-index:1}
+#pbar{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#f5b94a,#2dd4bf);z-index:50}
+#spy{position:fixed;right:1.2rem;top:50%;transform:translateY(-50%);display:none;flex-direction:column;gap:.8rem;z-index:40}
+@media(min-width:1180px){#spy{display:flex}}
+#spy a{display:block;width:11px;height:11px;border-radius:50%;border:2px solid var(--mute);position:relative;transition:transform .25s,background .25s,border-color .25s}
+#spy a.on{background:#f5b94a;border-color:#f5b94a;transform:scale(1.35)}
+#spy a span{position:absolute;right:22px;top:50%;transform:translateY(-50%);white-space:nowrap;font:12px 'JetBrains Mono',monospace;color:var(--ink);background:var(--panel);border:1px solid var(--rule);padding:.15rem .55rem;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .2s}
+#spy a:hover span,#spy a:focus-visible span{opacity:1}
+.hero{display:flex;gap:1.6rem;align-items:center;margin-bottom:1.4rem}
+.hero h1{margin:0 0 .5rem}.hero .by{margin:0}
+#mini{flex:none;width:132px;height:72px;cursor:pointer}
+@media(max-width:620px){.hero{flex-direction:column;align-items:flex-start}}
+.hero,.lead,.chips{opacity:0;transform:translateY(16px)}
+body.ready .hero,body.ready .lead,body.ready .chips{animation:up .9s cubic-bezier(.2,.7,.2,1) forwards}
+body.ready .lead{animation-delay:.15s}body.ready .chips{animation-delay:.3s}
+@keyframes up{to{opacity:1;transform:none}}
+.chips{display:flex;flex-wrap:wrap;gap:.7rem;margin:1.4rem 0}
+.chip{border:1px solid var(--rule);background:var(--panel);border-radius:999px;padding:.45rem .95rem;font:600 .82rem 'JetBrains Mono',monospace;transition:transform .2s,border-color .2s}
+.chip:hover{transform:translateY(-2px);border-color:#f5b94a}
+.chip b{color:var(--bad)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:var(--rd,0s)}
+.rv.in{opacity:1;transform:none}
+h2::after{content:"";display:block;height:2px;width:0;background:linear-gradient(90deg,#f5b94a,transparent);margin-top:.35rem;transition:width .9s .2s ease}
+h2.in::after{width:5rem}
+tbody tr td{transition:background .2s}
+tbody tr:hover td{background:var(--hi)}
+.bar{transform:scaleY(0);transform-box:fill-box;transition:opacity .25s}
+.dot{transform:scale(0);transform-box:fill-box;transform-origin:center;transition:opacity .25s}
+.fit{stroke-dasharray:1;stroke-dashoffset:1}
+figure.play .bar{animation:grow .8s cubic-bezier(.2,.9,.3,1.15) var(--d) forwards}
+figure.play .dot{animation:pop .5s cubic-bezier(.2,.9,.3,1.5) var(--d) forwards}
+figure.play .fit{animation:draw 1.2s .9s ease forwards}
+@keyframes grow{to{transform:scaleY(1)}}@keyframes pop{to{transform:scale(1)}}@keyframes draw{to{stroke-dashoffset:0}}
+.hl-on .bar:not(.hl),.hl-on .dot:not(.hl){opacity:.22}
+.calc .full{grid-column:1/-1}
+.calc select{width:100%;font:.95rem 'JetBrains Mono',monospace;padding:.55rem .65rem;border:1px solid var(--rule);border-radius:4px;background:var(--panel);color:var(--ink)}
+#out.flash{animation:flash .6s ease}
+@keyframes flash{from{background:var(--hi)}to{background:var(--panel)}}
+@media(prefers-reduced-motion:reduce){.hero,.lead,.chips,.rv{opacity:1;transform:none;animation:none!important;transition:none}.bar,.dot{transform:none;animation:none!important}.fit{stroke-dashoffset:0}h2::after{width:5rem;transition:none}}
 </style>
 </head>
-<body>
+<body class="lock">
 
-<nav class="nav">
-  <div class="wrap navin">
-    <a class="logo" href="#hero">9kwr</a>
-    <div class="links"><a href="#about">About</a><a href="#stack">Languages</a><a href="#work">Experience</a><a href="#contact">Contact</a></div>
-    <a class="navbtn" href="https://discord.com/users/963361152950222849">Discord</a>
-  </div>
-  <i id="bar"></i>
-</nav>
+<canvas id="rain" aria-hidden="true"></canvas><div id="glow" aria-hidden="true"></div><div id="pbar" aria-hidden="true"></div><nav id="spy" aria-label="Sections"></nav>
+<div id="ov" aria-hidden="true">
+  <canvas id="eye"></canvas>
+</div>
 
-<header class="hero" id="hero">
-  <canvas id="fx" aria-hidden="true"></canvas>
-  <div class="wrap">
-    <h1 class="rise">9kwr</h1>
-    <p class="role rise" style="animation-delay:.15s">I'm a <em><span id="role">backend developer and cybersecurity engineer</span></em></p>
-    <p class="pitch rise" style="animation-delay:.3s">I build fast systems and make them hard to break.</p>
-    <div class="rise" style="animation-delay:.45s">
-      <div class="stat">exploits blocked <b id="n">0</b></div>
-      <span class="hint">Move your cursor to defend the page.</span>
-    </div>
-    <div class="tas rise" aria-hidden="true" style="animation-delay:.6s">
-      <div class="tashd"><span>input timeline</span><span>frame <b id="fr">000000</b></span></div>
-      <div class="lanes"><div class="lane l1"></div><div class="lane l2"></div><div class="lane l3"></div><i class="head"></i></div>
-    </div>
-  </div>
-</header>
+<main>
+  <div class="hero"><canvas id="mini" width="264" height="144" role="img" aria-label="A small eye that follows your cursor. Click it to blink."></canvas><div><h1>A few frames of timer variation doesn’t prove lolmelody cut his footage</h1><p class="by">Written and built by <strong>9kwr</strong></p></div></div>
+  <p class="lead">A chart claims lolmelody’s run contains cuts because an on-screen reading lands 4 to 18 frames away from a whole number of seconds. I rebuilt the chart from its own timestamps. Here is what holds up, what doesn’t, and what would settle it.</p>
 
-<main class="wrap">
-  <section id="about">
-    <h2 class="rv">What I do</h2>
-    <div class="three rv">
-      <div class="sp"><h3>Backend development</h3><p>Services and tools built to be fast, reliable and easy to maintain.</p></div>
-      <div class="sp"><h3>Cybersecurity</h3><p>Finding weaknesses, hardening systems and thinking like an attacker to defend against one.</p></div>
-      <div class="sp"><h3>Game scripting</h3><p>Core logic, anti-cheat, security and optimization for games.</p></div>
-    </div>
-  </section>
+  <div class="chips"><span class="chip"><b>0</b> wrong rows</span><span class="chip"><b>0</b> of 6 gaps longer</span><span class="chip">mean offset t = <b>0</b></span><span class="chip">drift r = <b>0</b></span></div>
 
-  <section>
-    <h2 class="rv">How I think</h2>
-    <ul class="pr rv">
-      <li>Never trust the client.</li>
-      <li>Validate everything that matters.</li>
-      <li>Measure before optimizing.</li>
+  <div class="verdict">
+    <h2>What the check found</h2>
+    <ul>
+      <li>Two rows have arithmetic errors, and one timestamp is mistyped (“7:40.15”).</li>
+      <li>The chart reports variation without a sign. With signs, four of six gaps come out <em>longer</em> than a whole number of seconds, which small cuts can’t produce.</li>
+      <li>A frame-rate-dependent timer is a plausible alternative, but the chart can’t confirm it. It needs the FPS at each timestamp.</li>
+      <li>None of this proves he never cut. A cut leaves a visible or audible break at the timestamp.</li>
     </ul>
-  </section>
+  </div>
 
-  <section id="stack">
-    <h2 class="rv">Languages</h2>
-    <div class="chips rv"><span class="chip">C#</span><span class="chip">C++</span><span class="chip">Rust</span><span class="chip">Python</span><span class="chip">Luau</span></div>
-  </section>
+  <h2>How the chart works</h2>
+  <p>Each row picks two moments where the same repeating event shows up, then checks how far the gap between them is from a whole number of seconds. Timestamps are minutes:seconds:frame at 60 frames per second. The method assumes the event repeats on an exact whole-second period, so a clean recording should give a variation of zero.</p>
+  <div class="eq">frame index&nbsp;&nbsp;F = 3600·m + 60·s + f<br>gap&nbsp;&nbsp;G = F_end − F_start<br>whole seconds&nbsp;&nbsp;N = round(G / 60)<br>variation&nbsp;&nbsp;v = G − 60·N &nbsp;&nbsp;(negative = shorter, positive = longer)</div>
+  <p>The chart prints only |v|. The other four players land within 0 to 1 frame, even across gaps of 1,295 to 2,728 seconds. lolmelody lands 4 to 18 frames out on every row.</p>
 
-  <section id="work">
-    <h2 class="rv">Where I've worked</h2>
-    <div class="jobs rv">
-      <article class="job sp"><h3>Tasability Inc.</h3><span class="tag">Developer</span><p>I develop on Tasability, a TAS (tool-assisted speedrun) tool.</p></article>
-      <article class="job sp"><h3>The Obby Realm</h3><span class="tag">Lead Administrator</span><p>I lead the team and handle anti-cheat and fixes to keep the game fair and running well.</p></article>
-      <article class="job sp"><h3>Tower Creator</h3><span class="tag">Contributor</span><p>I helped the project fight hackers and exploiters.</p></article>
-    </div>
-  </section>
+  <h2>Every row, recomputed</h2>
+  <p>This table is calculated in your browser from the timestamps shown on the chart. A row is flagged when the chart’s seconds or frame count disagree with the calculation.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Player</th><th>From → to</th><th>Real gap</th><th>Chart says</th><th>v (signed)</th><th>Check</th></tr></thead>
+    <tbody id="tb"></tbody>
+  </table></div>
+  <p>The two flagged rows don’t change any frame variation, so they don’t overturn the claim on their own. They do show the chart wasn’t checked carefully, which is a reason to ask for the source numbers.</p>
 
-  <section class="contact" id="contact">
-    <h2 class="rv">Let's build something hard to break.</h2>
-    <div class="rv">
-      <p>Open to backend, security and scripting work. The fastest way to reach me is Discord.</p>
-      <a class="btn" href="https://discord.com/users/963361152950222849">Message me on Discord</a>
-    </div>
-  </section>
+  <h2>Direction matters</h2>
+  <figure>
+    <svg id="bars" viewBox="0 0 640 230" role="img" aria-label="Signed variation in frames for each of the six lolmelody rows"></svg>
+    <figcaption>lolmelody’s six rows, signed. Bars above the line are gaps longer than a whole number of seconds, bars below are shorter. Labels under each bar are the gap in seconds.</figcaption>
+  </figure>
+  <p>Signed, the six values are −10, +4, +9, +18, −10 and +11 frames. Their mean is <span id="sm">+3.7</span> frames with a standard deviation of <span id="ss">11.5</span>, so the mean is <span id="st">0.78</span> standard errors from zero. The 5% threshold for six samples is about 2.57, so the average offset isn’t distinguishable from none.</p>
+  <p>If frames were removed between two readings, the gap is G = 60N − c and v = −c, so small cuts (under half a second) always read negative. Four positive rows mean something other than small cuts is involved. One caveat: a cut larger than half a second wraps around. A 42-frame cut would print as +18. That is 0.7 seconds of missing gameplay, which would normally leave a visible jump, and this method can’t tell the two cases apart. It also can’t see cuts of an exact whole number of seconds.</p>
+
+  <h2>Does it grow with the gap?</h2>
+  <figure>
+    <svg id="scat" viewBox="0 0 640 230" role="img" aria-label="Signed variation against gap length for lolmelody, with a fitted line"></svg>
+    <figcaption>Signed variation against gap length, with a least-squares line. Six points only.</figcaption>
+  </figure>
+  <p>A constant clock difference would make v grow in proportion to the gap. Here the signed correlation is <span id="r1">0.77</span> (using |v| it is <span id="r2">0.57</span>), and the fitted slope is about <span id="sl">0.12</span> frames per second. With six points, a correlation needs to reach about 0.81 to clear the 5% bar, so this is a hint of drift, not proof. Removing footage would push longer gaps more negative, and the trend runs the other way.</p>
+
+  <h2>What could produce a 4 to 18 frame offset</h2>
+  <ul>
+    <li><strong>Reading error.</strong> Picking each timestamp to within a frame gives at most ±2 frames on a gap. That rules out sloppy reading as the whole story, since the offsets run up to 18.</li>
+    <li><strong>A small clock mismatch.</strong> 60 and 59.94 FPS differ by about one part in 1,000 [3]. That is 0.06 frames per second of gap: about 1.3 frames over 22 s and 12.4 over 206 s. It only applies if lolmelody’s recording or timer differs from the others, whose long gaps stay within one frame.</li>
+    <li><strong>A timer tied to frame rate.</strong> Roblox’s default client cap is 60 FPS, and players can raise it to 240 on Windows [1], so a 165 cap is a personal setting. Frame rate also varies from moment to moment, and the engine’s work is done frame by frame, with some frames taking much longer than others [2]. If the on-screen reading refreshes on a frame-based schedule, its timing shifts when FPS shifts. I couldn’t find Roblox documentation of how often the counter refreshes, so this stays a hypothesis until the FPS values at each timestamp are shown.</li>
+    <li><strong>Variable-rate recording.</strong> A video file can store frames at uneven intervals, and comparing ffprobe’s <code>r_frame_rate</code> with <code>avg_frame_rate</code> is the usual check [4]. Recording software can produce such files, and then timestamps read at a nominal 60 FPS drift.</li>
+    <li><strong>Cuts.</strong> Possible, and nothing here excludes them. But the offsets alone aren’t evidence of them.</li>
+  </ul>
+
+  <h2>Check any pair yourself</h2>
+  <div class="calc">
+    <div><label for="ca">Start (m:s:f)</label><input id="ca" value="2:44:12" autocomplete="off" spellcheck="false"></div>
+    <div><label for="cb">End (m:s:f)</label><input id="cb" value="3:50:02" autocomplete="off" spellcheck="false"></div>
+    <div class="full"><label for="pick">Or load a row from the chart</label><select id="pick"></select></div>
+  </div>
+  <div id="out" aria-live="polite"></div>
+
+  <h2>What would settle it</h2>
+  <ul>
+    <li>The frame at each flagged timestamp, looking for a jump, a repeated frame, or an audio break.</li>
+    <li>The FPS readout at both ends of every row, so the link between FPS and variation can be tested on all rows instead of picked from a few.</li>
+    <li>The same measurement on the other players’ runs, with their FPS.</li>
+    <li>ffprobe or MediaInfo output for lolmelody’s file, to rule variable frame rate in or out.</li>
+    <li>A fresh run with FPS held fixed. If the variation disappears, the timer explanation holds.</li>
+  </ul>
+  <p>This page doesn’t prove he never cut. It shows that this chart doesn’t demonstrate it, and that the evidence offered has ordinary explanations that haven’t been ruled out.</p>
+
+  <h2>Sources</h2>
+  <ol class="src">
+    <li>[1] <a href="https://create.roblox.com/docs/performance-optimization/identify">Roblox Creator Docs: Identify performance issues</a><small>Default client frame rate cap of 60 FPS, user-raisable to 240 on Windows; frame rate differs widely between devices.</small></li>
+    <li>[2] <a href="https://create.roblox.com/docs/projects/performance-optimization/computation">Roblox Creator Docs: Computation performance</a><small>The engine performs its work frame by frame, and the MicroProfiler is used to find spikes where some frames take much longer. This page’s own cap wording is older than [1], so I rely on [1] for the cap.</small></li>
+    <li>[3] <a href="https://www.nfsa.gov.au/preservation/preservation-glossary/drop-frame">National Film and Sound Archive of Australia: Drop frame</a><small>NTSC runs at 59.94 rather than 60 fields per second, a difference of about one in 1,000.</small></li>
+    <li>[4] <a href="https://comfy.icu/node/trope_DetectVFR">Detect VFR (ComfyUI node documentation)</a><small>A third-party tool page, not official FFmpeg documentation. It describes comparing ffprobe’s r_frame_rate and avg_frame_rate to detect variable frame rate, and notes that some screen recorders produce it.</small></li>
+  </ol>
+  <p>Not verified from a primary source: how often Roblox’s FPS counter refreshes, which counter or overlay the video shows, and whether lolmelody’s file is variable frame rate. The chart image itself is the only source for the timestamps.</p>
+
+  <footer>Written and built by 9kwr. Every number in the tables, charts and statistics is computed in your browser from the timestamps on the chart.</footer>
 </main>
 
-<footer><div class="wrap"><span>&copy; <span id="y">2026</span> 9kwr</span><a href="#hero">Back to top</a></div></footer>
-
 <script>
-const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-document.getElementById('y').textContent=new Date().getFullYear();
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.15});
-document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-document.querySelectorAll('.sp').forEach(el=>el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect();el.style.setProperty('--mx',e.clientX-r.left+'px');el.style.setProperty('--my',e.clientY-r.top+'px')}));
-const bar=document.getElementById('bar');
-addEventListener('scroll',()=>{bar.style.transform='scaleX('+scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)+')'},{passive:true});
-
-const rl=document.getElementById('role');
-if(!reduce){const words=['backend developer','cybersecurity engineer','game scripter'];let w=0,i=0,del=false;
-  (function tick(){const f=words[w];rl.textContent=f.slice(0,i);
-    if(!del&&i==f.length){del=true;return setTimeout(tick,1600)}
-    if(del&&i==0){del=false;w=(w+1)%words.length}
-    i+=del?-1:1;setTimeout(tick,del?35:70)})()}
-
-const hero=document.getElementById('hero'),c=document.getElementById('fx'),x=c.getContext('2d'),n=document.getElementById('n'),fr=document.getElementById('fr');
-let W,H,mx=null,my=null,t=0,blocked=0;const E=[],P=[],R=80;
-function size(){const d=Math.min(devicePixelRatio||1,2),r=hero.getBoundingClientRect();W=r.width;H=r.height;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0)}
+(function(){
+var ov=document.getElementById('ov'),cv=document.getElementById('eye'),ctx=cv.getContext('2d');
+var ended=false,W,H,cw,ch,cols,rows,EW0,EH,cx,cy,FONT,FS,LH,CWID,BL=[],rowOff=[],rain=[];
+var BEATS=[[2.7,'> the chart: 10 rows of timestamps, minutes:seconds:frame at 60 fps'],[4.9,'> i recomputed every row. two are wrong: 174s not 175s, and 2728s not 2732s'],[7.1,'> variation is shown unsigned. with signs, lolmelody reads -10 +4 +9 +18 -10 +11 frames'],[9.3,'> small cuts only remove time, yet 4 of 6 gaps came out longer than a whole second'],[11.5,'> a timer that follows fps explains jitter. a cut never cares about fps'],[13.7,'> verdict: not proof of cuts. the math and sources are below']];
+var SRC='const gap=(t2-t1)*60;if(gap%60!==0){flag(gap,fps)}fps=min(165,load);while(run){tick();frames++}return cut?false:jitter;//nocut';
+function end(){if(ended)return;ended=true;document.body.classList.remove('lock');document.body.classList.add('ready');document.dispatchEvent(new Event('ready'));ov.classList.add('done');setTimeout(function(){ov.remove()},1000)}
+if(matchMedia('(prefers-reduced-motion:reduce)').matches){end();return}
+function hs(a,b){var h=(a*374761393+b*668265263)|0;h=Math.imul(h^(h>>>13),1274126177);return((h^(h>>>16))>>>0)/4294967296}
+function sm(x){x=x<0?0:x>1?1:x;return x*x*(3-2*x)}
+function cl(x){return x<0?0:x>1?1:x}
+function ip(K,t){if(t<=K[0][0])return K[0].slice(1);for(var i=1;i<K.length;i++){if(t<K[i][0]){var a=K[i-1],b=K[i],k=sm((t-a[0])/(b[0]-a[0])),o=[];for(var j=1;j<a.length;j++)o.push(a[j]+(b[j]-a[j])*k);return o}}return K[K.length-1].slice(1)}
+var OK=[[0,0],[.7,0],[1.3,.32],[1.6,.3],[2.5,1.04],[2.75,1],[15,1],[15.9,0],[18,0]];
+var GZ=[[0,0,0],[2.6,0,0],[2.9,-.9,.1],[4.6,-.9,.1],[4.9,.8,.4],[6.8,.8,.4],[7.1,-.4,-.5],[9,-.4,-.5],[9.3,.9,-.2],[11.2,.9,-.2],[11.5,0,.3],[13.4,0,.3],[13.7,0,0],[18,0,0]];
+var SCL=['#243050','#33436b','#46577f','#64769f','#8798c1'],SKIN=['#18213b','#222e50','#2d3b64'],IR=[];
+(function(){var A=[245,185,74],T=[26,166,160];for(var h=0;h<6;h++){var row=[],u=h/5;for(var b=0;b<6;b++){var f=.28+.72*b/5;row.push('rgb('+Math.round((A[0]+(T[0]-A[0])*u)*f)+','+Math.round((A[1]+(T[1]-A[1])*u)*f)+','+Math.round((A[2]+(T[2]-A[2])*u)*f)+')')}IR.push(row)}})();
+function size(){var d=Math.min(devicePixelRatio||1,1.5);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;ctx.setTransform(d,0,0,d,0,0);
+cw=W<600?6:8;ch=cw*1.7;cols=Math.ceil(W/cw);rows=Math.ceil(H/ch);cx=W/2;cy=H/2;EW0=Math.min(W*.47,960);EH=Math.min(EW0*.44,H*.34);
+FONT=(cw/.6).toFixed(1)+'px "JetBrains Mono",ui-monospace,Menlo,Consolas,monospace';ctx.font=FONT;ctx.textBaseline='middle';ctx.textAlign='center';
+rowOff=[];for(var r=0;r<rows;r++)rowOff.push(Math.floor(hs(r,7)*SRC.length));
+rain=[];for(var c=0;c<cols;c+=2)rain.push({c:c,sp:6+hs(c,1)*12,off:hs(c,2)*100,tr:6+Math.floor(hs(c,3)*8)});
+FS=W<600?12:18;LH=FS*1.5;ctx.font=FS+'px "JetBrains Mono",monospace';CWID=ctx.measureText('M').width;var cpl=Math.max(20,Math.floor(W*.92/CWID));BL=BEATS.map(function(b){var out=[],cur='';b[1].split(' ').forEach(function(w){if((cur+' '+w).trim().length>cpl){out.push(cur);cur=w}else cur=(cur+' '+w).trim()});out.push(cur);return out});ctx.font=FONT}
 addEventListener('resize',size);size();
-hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top});
-hero.addEventListener('pointerleave',()=>{mx=null});
-function spawn(){const s=Math.random()*4|0,a=Math.random();E.push({x:s==1?W+10:s==3?-10:a*W,y:s==0?-10:s==2?H+10:a*H,v:.6+Math.random(),s:3+Math.random()*2.5,r:0})}
-function frame(){
-  t++;fr.textContent=String(t).padStart(6,'0');x.clearRect(0,0,W,H);
-  const cx=mx??W/2+Math.cos(t/90)*W*.32,cy=my??H/2+Math.sin(t/70)*H*.28;
-  if(t%26==0&&E.length<40)spawn();
-  for(let i=E.length-1;i>=0;i--){const e=E[i],dx=cx-e.x,dy=cy-e.y,d=Math.hypot(dx,dy);
-    if(d<R){for(let k=0;k<10;k++){const a=Math.random()*6.28,s=1+Math.random()*2.5;P.push({x:e.x,y:e.y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:1})}
-      E.splice(i,1);n.textContent=++blocked;continue}
-    e.x+=dx/d*e.v;e.y+=dy/d*e.v;e.r+=.05;
-    x.save();x.translate(e.x,e.y);x.rotate(e.r);x.fillStyle='#c9d8ff';x.fillRect(-e.s,-e.s,e.s*2,e.s*2);x.restore()}
-  for(let i=P.length-1;i>=0;i--){const p=P[i];p.x+=p.vx;p.y+=p.vy;p.l-=.035;
-    if(p.l<=0){P.splice(i,1);continue}
-    x.globalAlpha=p.l;x.fillStyle=i%2?'#6aa8ff':'#bcd8ff';x.fillRect(p.x,p.y,3,3)}
-  x.globalAlpha=1;
-  const g=x.createRadialGradient(cx,cy,R*.3,cx,cy,R);g.addColorStop(0,'#6aa8ff00');g.addColorStop(1,'#6aa8ff44');
-  x.fillStyle=g;x.beginPath();x.arc(cx,cy,R,0,6.283);x.fill();
-  x.strokeStyle='#6aa8ff';x.lineWidth=1.5;x.setLineDash([12,9]);x.lineDashOffset=-t*.6;x.beginPath();x.arc(cx,cy,R,0,6.283);x.stroke();
+var t0=null;
+function frame(ts){
+  if(ended)return;
+  if(t0===null)t0=ts;
+  var t=(ts-t0)/1000;
+  if(t>16.5){end();return}
+  var bf=1;[3.9,8.1,12.7].forEach(function(b){if(t>b&&t<b+.24)bf=Math.min(bf,1-.96*Math.sin(Math.PI*(t-b)/.24))});
+  var o=ip(OK,t)[0]*bf,g=ip(GZ,t),gx=g[0]+.025*Math.sin(t*41),gy=g[1]+.025*Math.cos(t*37);
+  var ws=t<.7?sm(t/.7):(t>15.9?1-sm((t-15.9)/.5):1),EW=EW0*ws,tick=Math.floor(t*14),last='';
+  ctx.clearRect(0,0,W,H);ctx.textAlign='center';ctx.font=FONT;
+  var oc=Math.min(1,o),ir=EH*.86,ix=cx+gx*EW*.28*oc,iy=cy+gy*EH*.34*oc,sx=1-.2*Math.abs(gx),pr=ir*(.34+.17*Math.exp(-Math.max(0,t-2)/.9));
+  var gr=ctx.createRadialGradient(ix,iy,0,ix,iy,EH*2.4);gr.addColorStop(0,'rgba(245,185,74,'+(.17*oc)+')');gr.addColorStop(1,'rgba(7,11,20,0)');ctx.fillStyle=gr;ctx.fillRect(0,0,W,H);
+  /* code rain outside the eye */
+  var ra=cl(t/1.2);
+  for(var q=0;q<rain.length;q++){var rn=rain[q],hd=(t*rn.sp+rn.off)%(rows+rn.tr),rx=rn.c*cw+cw/2;
+    for(var j=0;j<rn.tr;j++){var rr=Math.floor(hd)-j;if(rr<0||rr>=rows)continue;var ry=rr*ch+ch/2;
+      if(Math.abs(rx-cx)<EW0*1.02&&Math.abs(ry-cy)<EH*2.1)continue;
+      var rc=j===0?'#3d5a8c':j<3?'#243a63':'#16233f';if(rc!==last){ctx.fillStyle=rc;last=rc}
+      ctx.globalAlpha=ra;ctx.fillText(SRC.charAt((rn.c+rowOff[rr]+tick)%SRC.length),rx,ry)}}
+  ctx.globalAlpha=1;
+  if(EW>=2){
+    var gl=BEATS.some(function(b){return t>b[0]&&t<b[0]+.1}),gt=Math.floor(t*30),rev=Math.min(1.01,t/2);
+    var r0=Math.max(0,Math.floor((cy-EH*2.1)/ch)),r1=Math.min(rows-1,Math.ceil((cy+EH*1.4)/ch)),c0=Math.max(0,Math.floor((cx-EW)/cw)),c1=Math.min(cols-1,Math.ceil((cx+EW)/cw));
+    for(var r=r0;r<=r1;r++){var y=r*ch+ch/2,dy=y-cy,off=(gl&&hs(r,gt)<.1)?(hs(r,gt+1)-.5)*cw*14:0;
+      for(var c=c0;c<=c1;c++){var x=c*cw+cw/2,dx=(x-cx)/EW;if(dx>1||dx<-1)continue;if(hs(r,c)>rev)continue;
+        var k=Math.pow(1-dx*dx,.85),top=EH*o*k*1.1,bot=EH*o*k*.85,inside=dy>-top&&dy<bot,up=Math.abs(dy+top)<ch*.7,lo=Math.abs(dy-bot)<ch*.7,col;
+        if(up||lo)col=up?'#e8eefc':'#9fb0d6';
+        else if(inside){
+          var di=Math.hypot((x-ix)/sx,y-iy),h1=Math.hypot(x-(ix-ir*.4),y-(iy-ir*.44)),h2=Math.hypot(x-(ix+ir*.32),y-(iy+ir*.38));
+          if(h1<ir*.14&&di<ir)col='#ffffff';
+          else if(h2<ir*.075&&di<ir)col='#cfe6ff';
+          else if(di<pr)continue;
+          else if(di<pr*1.14)col='#ffd98a';
+          else if(di<ir){
+            var rd=di/ir;
+            if(rd>.93)col='#0b2447';
+            else{var u=cl((rd-.38)/.62),a=Math.atan2(y-iy,(x-ix)/sx),fib=.5+.5*Math.sin(a*26+Math.sin(a*5+rd*6)*1.7+rd*9),br=(1-.55*u*u)*(.55+.45*fib);col=IR[Math.floor(u*5.99)][Math.floor(cl(br)*5.99)]}
+          }else{
+            if(dx<-.8)col=dy<0?'#ff8fa3':'#c76c84';
+            else if(Math.abs(dx)>.5&&Math.sin(dx*40+dy*.09)*Math.sin(dy*.21-dx*13)>.88)col='#8a4a68';
+            else{var lp=cl(Math.min(dy+top,bot-dy)/(EH*.5)),sh=1-.55*(1-lp)-.3*dx*dx;col=SCL[Math.floor(cl(sh)*4.99)]}
+          }
+        }else{
+          var st=EH*(.2+.2*oc)*k,sb=EH*.14*k;
+          if(dy<=-top&&dy>-top-st)col=Math.abs(dy+top+st)<ch*.6?'#7f8fb5':SKIN[dy>-top-st*.5?2:1];
+          else if(dy>=bot&&dy<bot+sb)col=SKIN[0];
+          else continue;
+        }
+        if(col!==last){ctx.fillStyle=col;last=col}
+        ctx.fillText(SRC.charAt((c+rowOff[r]+tick)%SRC.length),x+off,y)}}
+    /* eyelashes */
+    ctx.fillStyle='#e8eefc';
+    for(var i=-40;i<=40;i++){var dn=i/40*.94,lx=cx+dn*EW,kk=Math.pow(1-dn*dn,.85),by=cy-EH*o*kk*1.1,n=2+Math.floor(hs(i,3)*3),sg=i<0?-1:1;
+      for(var j2=1;j2<=n;j2++)ctx.fillText(Math.abs(i)<5?'|':(sg<0?'\\':'/'),lx+sg*j2*cw*.7*Math.abs(dn),by-j2*ch*.8)}
+  }
+  /* narration */
+  var bi=-1;for(var m=0;m<BEATS.length;m++)if(t>=BEATS[m][0])bi=m;
+  if(bi>=0){var nn=Math.floor((t-BEATS[bi][0])*40),ls=BL[bi],tot=0;
+    ctx.font=FS+'px "JetBrains Mono",monospace';ctx.textAlign='left';ctx.fillStyle=bi>=4?'#f5b94a':'#d6e0f7';
+    ctx.globalAlpha=t>15.4?Math.max(0,1-(t-15.4)/.4):1;
+    var y0=Math.min(H-24-ls.length*LH,cy+EH*1.75+16);
+    for(var li=0;li<ls.length;li++){var seg=ls[li].slice(0,Math.max(0,nn-tot)),typing=nn-tot>=0&&nn-tot<=ls[li].length;
+      ctx.fillText(seg+(typing&&Math.floor(t*3)%2?'_':''),(W-ls[li].length*CWID)/2,y0+li*LH);tot+=ls[li].length}
+    ctx.globalAlpha=1}
   requestAnimationFrame(frame)}
-if(reduce){document.querySelector('.stat').style.display='none';document.querySelector('.hint').style.display='none'}else frame();
+requestAnimationFrame(frame);
+})();
+</script>
+<script>
+(function(){
+var ROWS=[['lolmelody','2:44:12','3:50:02',66,10],['lolmelody','4:43:02','6:27:06',104,4],['lolmelody','6:59:06','7:40:15',41,9],['lolmelody','10:17:14','13:43:32',206,18],['lolmelody','19:27:33','19:49:23',22,10],['lolmelody','23:45:24','26:39:35',175,11],['Frocta','2:06:44','27:27:44',1521,0],['exexic','3:47:01','25:23:00',1296,1],['ChubbyBubbers','2:32:55','48:00:55',2732,0],['Sh4ngr3b0rn3d','0:19:33','36:12:33',2153,0]];
+function fr(s){var p=s.trim().split(':').map(Number);if(p.length!==3||p.some(isNaN))return NaN;return p[0]*3600+p[1]*60+p[2]}
+function calc(a,b){var g=fr(b)-fr(a),n=Math.round(g/60);return{g:g,n:n,v:g-60*n}}
+function fmt(g){var s=Math.floor(g/60);return s+'s '+(g-60*s)+'f'}
+function sg(v){return(v>0?'+':v<0?'−':'')+Math.abs(v)}
+var rows=ROWS.map(function(r){var c=calc(r[1],r[2]);return{p:r[0],a:r[1],b:r[2],cs:r[3],cv:r[4],g:c.g,n:c.n,v:c.v}});
+var h='';rows.forEach(function(r,i){var bad=r.cs!==r.n||r.cv!==Math.abs(r.v);
+h+='<tr class="'+(bad?'bad':'')+(i===6?' sep':'')+'"><td>'+r.p+'</td><td>'+r.a+' → '+r.b+'</td><td>'+fmt(r.g)+'</td><td>'+r.cs+'s, '+r.cv+'f</td><td class="sign">'+sg(r.v)+'f</td><td class="'+(bad?'bad-t':'ok-t')+'">'+(bad?'wrong: should be '+r.n+'s':'matches')+'</td></tr>'});
+document.getElementById('tb').innerHTML=h;
+var L=rows.slice(0,6),V=L.map(function(r){return r.v}),X=L.map(function(r){return r.n}),A=V.map(Math.abs);
+function mean(a){return a.reduce(function(x,y){return x+y},0)/a.length}
+function sd(a){var m=mean(a);return Math.sqrt(a.reduce(function(s,x){return s+(x-m)*(x-m)},0)/(a.length-1))}
+function cor(a,b){var ma=mean(a),mb=mean(b),n=0,da=0,db=0;for(var i=0;i<a.length;i++){n+=(a[i]-ma)*(b[i]-mb);da+=(a[i]-ma)*(a[i]-ma);db+=(b[i]-mb)*(b[i]-mb)}return n/Math.sqrt(da*db)}
+var slope=cor(X,V)*sd(V)/sd(X),icpt=mean(V)-slope*mean(X);
+function put(id,t){document.getElementById(id).textContent=t}
+put('sm',sg(+mean(V).toFixed(1)));put('ss',sd(V).toFixed(1));put('st',(mean(V)/(sd(V)/Math.sqrt(6))).toFixed(2));put('r1',cor(X,V).toFixed(2));put('r2',cor(X,A).toFixed(2));put('sl',slope.toFixed(2));
+window.__R=rows;window.__S={w:rows.filter(function(r){return r.cs!==r.n||r.cv!==Math.abs(r.v)}).length,l:L.filter(function(r){return r.v>0}).length,t:mean(V)/(sd(V)/Math.sqrt(6)),r:cor(X,V)};
+var s='<line x1="40" x2="620" y1="115" y2="115" stroke="currentColor" opacity=".6"/>';
+L.forEach(function(r,i){var x=70+i*92,hh=Math.abs(r.v)*4.6,y=r.v>=0?115-hh:115;
+s+='<rect class="bar" data-i="'+i+'" style="--d:'+(i*.09)+'s;transform-origin:50% '+(r.v>=0?'100%':'0%')+'" x="'+x+'" y="'+y+'" width="52" height="'+hh+'" fill="'+(r.v>=0?'var(--ok)':'var(--bad)')+'"/><text x="'+(x+26)+'" y="'+(r.v>=0?y-6:y+hh+14)+'" text-anchor="middle">'+sg(r.v)+'f</text><text x="'+(x+26)+'" y="215" text-anchor="middle">'+r.n+'s</text>'});
+document.getElementById('bars').innerHTML=s;
+function px(x){return 50+x/220*560}function py(v){return 200-(v+15)*5.143}
+s='<line x1="50" x2="610" y1="'+py(0)+'" y2="'+py(0)+'" stroke="currentColor" opacity=".6"/><line x1="50" x2="610" y1="200" y2="200" stroke="currentColor" opacity=".3"/>';
+s+='<line x1="'+px(0)+'" y1="'+py(icpt)+'" x2="'+px(220)+'" y2="'+py(icpt+slope*220)+'" stroke="currentColor" class="fit" pathLength="1" opacity=".7"/>';
+L.forEach(function(r,i){s+='<circle class="dot" data-i="'+i+'" style="--d:'+(.3+i*.09)+'s" cx="'+px(r.n)+'" cy="'+py(r.v)+'" r="5" fill="'+(r.v>=0?'var(--ok)':'var(--bad)')+'"/><text x="'+(px(r.n)+9)+'" y="'+(py(r.v)+4)+'">'+sg(r.v)+'</text>'});
+s+='<text x="50" y="220">0 s</text><text x="'+px(100)+'" y="220" text-anchor="middle">100 s</text><text x="'+px(200)+'" y="220" text-anchor="middle">200 s</text><text x="46" y="'+(py(0)+4)+'" text-anchor="end">0</text>';
+document.getElementById('scat').innerHTML=s;
+var ca=document.getElementById('ca'),cb=document.getElementById('cb'),out=document.getElementById('out');
+function run(){var c=calc(ca.value,cb.value);if(isNaN(c.g)){out.textContent='Enter timestamps as minutes:seconds:frame, for example 2:44:12.';return}
+out.textContent='gap G = '+c.g+' frames = '+fmt(c.g)+' ('+(c.g/60).toFixed(3)+' s)\nnearest whole second N = '+c.n+'\nvariation v = '+sg(c.v)+' frames ('+(Math.abs(c.v)/60*1000).toFixed(1)+' ms)'}
+ca.oninput=run;cb.oninput=run;run();
+})();
+</script>
+<script>
+(function(){
+var RM=matchMedia('(prefers-reduced-motion:reduce)').matches,dark=matchMedia('(prefers-color-scheme:dark)'),sv=0,lastY=scrollY,pm={x:-999,y:-999};
+/* progress bar + section dots */
+var pb=document.getElementById('pbar'),spy=document.getElementById('spy'),hs=[].slice.call(document.querySelectorAll('main h2'));
+hs.forEach(function(h,i){h.id='s'+i;var a=document.createElement('a');a.href='#s'+i;a.setAttribute('aria-label',h.textContent);a.innerHTML='<span>'+h.textContent+'</span>';spy.appendChild(a)});
+var dots=[].slice.call(spy.children);
+function onScroll(){var max=document.documentElement.scrollHeight-innerHeight;pb.style.transform='scaleX('+(max>0?scrollY/max:0)+')';sv+=scrollY-lastY;lastY=scrollY;var cur=0;hs.forEach(function(h,i){if(h.getBoundingClientRect().top<innerHeight*.4)cur=i});dots.forEach(function(d,i){d.classList.toggle('on',i===cur)})}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+/* scroll reveal */
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){var e=en.target;e.classList.add('in');if(e.tagName==='FIGURE')e.classList.add('play');io.unobserve(e)}})},{threshold:.12});
+[].slice.call(document.querySelectorAll('main > h2,main > p:not(.by):not(.lead),main > figure,main > .tw,main > .eq,main > .calc,main > #out,main > .verdict h2,main > ul > li,main > ol > li,.verdict li')).forEach(function(e){
+  var sib=e.parentNode.children,i=[].indexOf.call(sib,e);e.classList.add('rv');e.style.setProperty('--rd',(e.tagName==='LI'?i*.08:0)+'s');io.observe(e)});
+/* animated counters */
+var S=window.__S||{w:2,l:4,t:.78,r:.77},cbs=[].slice.call(document.querySelectorAll('.chip b')),vals=[S.w,S.l,S.t,S.r],dec=[0,0,2,2];
+function count(b,to,d){if(RM){b.textContent=to.toFixed(d);return}var t0=null;(function st(ts){if(t0===null)t0=ts;var k=Math.min(1,(ts-t0)/1200);b.textContent=(to*(1-Math.pow(1-k,3))).toFixed(d);if(k<1)requestAnimationFrame(st)})(performance.now())}
+var started=false;function go(){if(started)return;started=true;cbs.forEach(function(b,i){setTimeout(function(){count(b,vals[i],dec[i])},500+i*150)})}
+if(document.body.classList.contains('ready'))go();else document.addEventListener('ready',go);
+/* chart <-> table link */
+var trs=[].slice.call(document.querySelectorAll('#tb tr'));
+trs.slice(0,6).forEach(function(tr,i){tr.onmouseenter=function(){document.body.classList.add('hl-on');[].forEach.call(document.querySelectorAll('[data-i="'+i+'"]'),function(e){e.classList.add('hl')})};tr.onmouseleave=function(){document.body.classList.remove('hl-on');[].forEach.call(document.querySelectorAll('.hl'),function(e){e.classList.remove('hl')})}});
+/* calculator row picker */
+var pick=document.getElementById('pick'),ca=document.getElementById('ca'),cb=document.getElementById('cb'),out=document.getElementById('out'),R=window.__R||[];
+pick.innerHTML='<option value="">Custom</option>'+R.map(function(r,i){return'<option value="'+i+'">'+r.p+': '+r.a+' → '+r.b+'</option>'}).join('');
+function flash(){out.classList.remove('flash');void out.offsetWidth;out.classList.add('flash')}
+pick.onchange=function(){if(pick.value==='')return;var r=R[+pick.value];ca.value=r.a;cb.value=r.b;ca.oninput();flash()};
+ca.addEventListener('input',function(){pick.value='';flash()});cb.addEventListener('input',function(){pick.value='';flash()});
+/* mini eye that follows the pointer */
+var mc=document.getElementById('mini'),mx=mc.getContext('2d'),gx=0,gy=0,tx=0,ty=0,op=1,nb=3000,bs=-1,lastMove=0,nextGl=0;
+function eye(){var ink=getComputedStyle(document.body).color,hh=50*op;mx.clearRect(0,0,264,144);
+ mx.save();mx.beginPath();mx.moveTo(20,72);mx.quadraticCurveTo(132,72-2*hh,244,72);mx.quadraticCurveTo(132,72+1.7*hh,20,72);mx.closePath();mx.clip();
+ mx.fillStyle='#e9eefb';mx.fillRect(0,0,264,144);
+ var ix=132+gx*40,iy=72+gy*14,g=mx.createRadialGradient(ix,iy,6,ix,iy,40);g.addColorStop(0,'#f5b94a');g.addColorStop(.6,'#c98a1b');g.addColorStop(.9,'#0b2447');g.addColorStop(1,'#0b2447');
+ mx.fillStyle=g;mx.beginPath();mx.arc(ix,iy,40,0,7);mx.fill();
+ mx.fillStyle='#05070e';mx.beginPath();mx.arc(ix,iy,15,0,7);mx.fill();
+ mx.fillStyle='#fff';mx.beginPath();mx.arc(ix-13,iy-14,6,0,7);mx.fill();
+ var sh=mx.createLinearGradient(0,72-hh,0,72-hh+34);sh.addColorStop(0,'rgba(5,7,14,.5)');sh.addColorStop(1,'rgba(5,7,14,0)');mx.fillStyle=sh;mx.fillRect(0,0,264,144);
+ mx.restore();mx.strokeStyle=ink;mx.lineCap='round';mx.lineWidth=5;
+ mx.beginPath();mx.moveTo(20,72);mx.quadraticCurveTo(132,72-2*hh,244,72);mx.stroke();
+ mx.lineWidth=3;mx.beginPath();mx.moveTo(20,72);mx.quadraticCurveTo(132,72+1.7*hh,244,72);mx.stroke();
+ if(op>.25)for(var k=1;k<8;k++){var t=k/8,u=1-t,x=u*u*20+2*u*t*132+t*t*244,y=u*u*72+2*u*t*(72-2*hh)+t*t*72;mx.beginPath();mx.moveTo(x,y);mx.lineTo(x+(t-.5)*26,y-14*op);mx.stroke()}}
+function mloop(ts){requestAnimationFrame(mloop);
+ if(bs<0&&ts>nb)bs=ts;
+ if(bs>=0){var k=(ts-bs)/220;if(k>=1){bs=-1;op=1;nb=ts+1800+Math.random()*4200}else op=1-.95*Math.sin(Math.PI*k)}
+ if(ts-lastMove>3000&&ts>nextGl){tx=Math.random()*2-1;ty=Math.random()-.5;nextGl=ts+1400+Math.random()*2200}
+ gx+=(tx-gx)*.12;gy+=(ty-gy)*.12;eye()}
+if(RM)eye();else requestAnimationFrame(mloop);
+mc.onclick=function(){nb=0;setTimeout(function(){nb=0},330)};
+function cl(v){return Math.max(-1,Math.min(1,v))}
+addEventListener('pointermove',function(e){var r=mc.getBoundingClientRect();tx=cl((e.clientX-r.left-r.width/2)/(innerWidth*.35));ty=cl((e.clientY-r.top-r.height/2)/(innerHeight*.35));lastMove=performance.now();pm.x=e.clientX;pm.y=e.clientY;var s=document.documentElement.style;s.setProperty('--mx',e.clientX+'px');s.setProperty('--my',e.clientY+'px')},{passive:true});
+/* rain */
+var rc=document.getElementById('rain'),rx=rc.getContext('2d'),RW,RH,drops=[],rip=[],GL='const gap=t2-t1;flag(gap);fps=min(165,load);return cut?false:jitter;',lt=0;
+function nd(init){var z=Math.random();return{x:Math.random()*(RW+200)-60,y:init?Math.random()*RH:-40-Math.random()*160,z:z,l:8+z*20,s:420+z*620,g:Math.random()<.1?GL.charAt(Math.floor(Math.random()*GL.length)):'',a:Math.random()<.5}}
+function rs(){var d=Math.min(devicePixelRatio||1,1.5);RW=innerWidth;RH=innerHeight;rc.width=RW*d;rc.height=RH*d;rx.setTransform(d,0,0,d,0,0);drops=[];for(var i=0,n=Math.min(260,Math.floor(RW*RH/7000));i<n;i++)drops.push(nd(true))}
+addEventListener('resize',rs);rs();
+addEventListener('pointerdown',function(e){if(rip.length<40)rip.push({x:e.clientX,y:e.clientY,r:2,a:.55,big:1})});
+function rf(ts){requestAnimationFrame(rf);var dt=Math.min(.05,(ts-lt)/1000||.016);lt=ts;rx.clearRect(0,0,RW,RH);
+ sv*=.92;var mult=1+Math.min(1.5,Math.abs(sv)*.02),slant=-.2-Math.max(-.5,Math.min(.5,sv*.004)),col=dark.matches?'170,195,240':'50,70,120';
+ rx.lineWidth=1;rx.font='12px "JetBrains Mono",monospace';rx.textAlign='center';
+ for(var i=0;i<drops.length;i++){var d=drops[i];d.y+=d.s*dt*mult;d.x+=slant*d.s*dt*mult;
+  var dx=d.x-pm.x,dy=d.y-pm.y,dd=dx*dx+dy*dy;if(dd<8100&&dd>1)d.x+=dx/Math.sqrt(dd)*140*dt;
+  if(d.y>RH+10||d.x<-80){if(d.y>RH&&Math.random()<.12&&rip.length<30)rip.push({x:d.x,y:RH-4,r:1,a:.35,big:0});drops[i]=nd(false);continue}
+  if(d.g){rx.fillStyle=(d.a?'rgba(245,185,74,':'rgba(45,212,191,')+(.25+.5*d.z).toFixed(2)+')';rx.fillText(d.g,d.x,d.y)}
+  else{rx.strokeStyle='rgba('+col+','+(.08+.3*d.z).toFixed(2)+')';rx.beginPath();rx.moveTo(d.x,d.y);rx.lineTo(d.x-slant*d.l,d.y-d.l);rx.stroke()}}
+ for(var j=rip.length-1;j>=0;j--){var p=rip[j];p.r+=dt*(p.big?170:32);p.a-=dt*(p.big?.7:.9);if(p.a<=0){rip.splice(j,1);continue}
+  rx.strokeStyle=(p.big?'rgba(245,185,74,':'rgba('+col+',')+p.a.toFixed(2)+')';rx.beginPath();rx.ellipse(p.x,p.y,p.r,p.r*(p.big?1:.35),0,0,7);rx.stroke()}}
+if(!RM)requestAnimationFrame(rf);
+})();
 </script>
 </body>
 </html>
